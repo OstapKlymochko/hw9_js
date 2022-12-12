@@ -168,11 +168,11 @@ let coursesArray = [
 // );
 
 let props = [];
-for (const course of coursesArray) {
+for(const course of coursesArray) {
     for(val in course){
         props.push(String(val));
     }
-    break
+    break;
 }
 props = props.map(function (value){
     let temp = document.createElement('div');
@@ -312,3 +312,30 @@ document.getElementsByName('read')[0].addEventListener('click', function (e){
 // *** Створити 3 инпута та кнопку. Один визначає кількість рядків, другий - кількість ячеєк, третій вмиіст ячеєк.
 //     При натисканні кнопки, вся ця інформація зчитується і формується табличка, з відповідним вмістом.
 // (Додатковачастина для завдання)
+let dataDiv = document.createElement('div');
+let rowsInput = document.createElement('input');
+rowsInput.setAttribute('type', 'number');
+let colsInput = document.createElement('input');
+colsInput.setAttribute('type', 'number');
+let dataInput = document.createElement('input');
+button = document.createElement('button');
+button.innerText = 'Create';
+dataDiv.style.display = 'flex';
+dataDiv.append(rowsInput,colsInput,dataInput,button);
+document.body.appendChild(dataDiv);
+button.onclick = function (){
+    let table = document.createElement('table');
+    table.style.border = '1px solid black';
+    for(let i = 0;i < rowsInput.value; ++i){
+        let temp = document.createElement('tr');
+        temp.style.border = '1 px solid black';
+        for( let j = 0 ;j<colsInput.value;++j){
+            let col = document.createElement('td');
+            col.innerText = dataInput.value;
+            temp.appendChild(col);
+        }
+        table.appendChild(temp);
+    }
+
+    document.body.appendChild(table);
+}
